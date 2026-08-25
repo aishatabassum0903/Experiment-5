@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Compile') {
+            steps {
+                bat 'javac hello.java'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                bat 'java hello'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'BUILD SUCCESSFUL'
+        }
+
+        failure {
+            echo 'BUILD FAILED'
+        }
+    }
+}
